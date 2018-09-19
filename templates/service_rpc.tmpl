@@ -1,0 +1,14 @@
+<TR>
+	<TD ALIGN="{{settings "text.align.name"}}"><b>{{.Name}}</b></TD>
+	<TD>{{.StreamsRequest}}</TD>
+	<TD PORT="po{{.Name}}_request" ALIGN="{{settings "text.align.type"}}">{{.RequestType}}</TD>
+</TR>
+<TR style="border-bottom: 1px solid red">
+	<TD></TD>
+	<TD BGCOLOR="{{color "service.return"}}">
+		{{.StreamsReturns}}
+	</TD>
+	<TD PORT="po{{.Name}}_response" ALIGN="{{settings "text.align.type"}}" BGCOLOR="{{color "service.return"}}">
+		{{.ReturnsType}}
+	</TD>
+</TR>

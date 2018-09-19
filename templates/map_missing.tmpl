@@ -1,0 +1,8 @@
+<TR>
+	<TD>{{.Prefix}}</TD>
+	<TD ALIGN="{{settings "text.align.sequence"}}">{{.Ordinal}}</TD>
+	<TD ALIGN="{{settings "text.align.name"}}">{{.Name}}</TD>
+	<TD ALIGN="{{settings "text.align.type"}}" BGCOLOR="{{color "type.missing"}}" PORT="po{{.Name}}">
+		map&lt;{{.KeyType}}, <b>{{.Type}}</b>&gt;
+	</TD>
+</TR>
