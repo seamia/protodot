@@ -1,5 +1,11 @@
 # protodot
-transforming your .proto files into .dot files (and .svg, .png)
+transforming your `.proto` files into `.dot` files (and `.svg`, `.png` if you happen to have `graphviz` installed)
+
+## data pipeline
+<p align="center">
+  <img src="https://protodot.seamia.net/pipeline.svg">
+</p>
+
 
 ## installation
 you can download the sources (from this page) and build `protodot` yourself, or
