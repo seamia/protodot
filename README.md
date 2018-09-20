@@ -1,5 +1,11 @@
 # protodot
-transforming your .proto files into .dot files (and .svg, .png)
+transforming your `.proto` files into `.dot` files (and `.svg`, `.png` if you happen to have `graphviz` installed)
+
+## data pipeline
+<p align="center">
+  <img src="https://protodot.seamia.net/pipeline.svg">
+</p>
+
 
 ## installation
 you can download the sources (from this page) and build `protodot` yourself, or
@@ -17,3 +23,26 @@ if you installed `protodot` from the binary distribution - you may want to extra
 ```
 
 ## command line arguments
+
+   * `-src what.proto` - location and name of the source file, required
+   * `-config config.json` - location and name of the configuration file, optional
+   * `-select .one.two;three.four` - name(s) of the selected elements to show, optional, explained later in this document
+   * `-output save-it-here` - name of the output file, optional
+
+
+## configuration file
+tbd
+
+## selected output
+sometimes the resulting diagram can be overwhelming.
+you have an option to limit the output to the elements that interest you the most, hence `-select args` command line option
+so far, `args` in `-select args` can take one of the two available forms:
+   * list of the elements (and their dependencies) that you want to see included (separated by `;`). the elements can be `enums`, `messages`, `rpc` methods and `services`.
+   * if you specify `*` as an argument - this will result in the inclusion of the elements declared in the **main** `.proto` file (specified in `-src` argument) and their dependencies. in other words: all the **unused** elements declared in all the **included** `.proto` files will not be shown.
+
+
+## an example of output
+<p align="center">
+  <img src="https://protodot.seamia.net/pipeline/svg">
+</p>
+
