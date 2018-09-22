@@ -86,3 +86,19 @@ same as above, but instead of `rpc` method, name of the `message` was specified:
 
 
 ## how to (automatically) generate `.svg` and/or `.png` images from produced `.dot` file
+1. install `graphviz` (see https://graphviz.gitlab.io/download/ for the instructions)
+2. specify the location of the `dot` utility (which is a part of `graphviz)` in your version of configuration file, e.g.
+```
+{
+	"locations": {
+		"graphviz":	"/path/to/dot",
+```
+3. set approptiate `options` in your version of configuration file, e.g.
+```
+{
+	"options" : {
+		"generate .png file":		false,
+		"generate .svg file":		true,
+
+```
+
