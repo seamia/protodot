@@ -28,6 +28,7 @@ if you installed `protodot` from the binary distribution - you may want to extra
    * `-config config.json` - location and name of the configuration file, optional
    * `-select .one.two;three.four` - name(s) of the selected elements to show, optional, explained later in this document
    * `-output save-it-here` - name of the output file, optional
+   * `-inc /abc/def;/xyz` - (semicolon separated) list of the include directories, optional
 
 
 ## configuration file
@@ -35,10 +36,11 @@ tbd
 
 ## selected output
 sometimes the resulting diagram can be overwhelming.
-you have an option to limit the output to the elements that interest you the most, hence `-select args` command line option
-so far, `args` in `-select args` can take one of the two available forms:
+you have an option to limit the output to the elements that interest you the most, hence `-select args` command line option.
+so far, `args` in `-select args` can take one of the three available forms:
    * list of the elements (and their dependencies) that you want to see included (separated by `;`). the elements can be `enums`, `messages`, `rpc` methods and `services`.
    * if you specify `*` as an argument - this will result in the inclusion of the elements declared in the **main** `.proto` file (specified in `-src` argument) and their dependencies. in other words: all the **unused** elements declared in all the **included** `.proto` files will not be shown.
+   * if you specify `imports` as an argument - `protodot` will generate import dependency graph (see an example below)
 
 
 ## an example of output
@@ -49,31 +51,38 @@ so far, `args` in `-select args` can take one of the two available forms:
 
 
 
-## an illustration of effects of different `-select` option
+## an illustration of effects of different `-select` options
 using `https://github.com/googleapis/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto` as the source
 
 ### not using `-select`
+everything declared in the root `.proto` file and all the `imports` will be produced:
 <p align="center">
   <img src="https://protodot.seamia.net/demo/dlp_full.svg">
 </p>
 
 ### using `-select *`
+only elements declared in the root `.proto` file and their dependencies will be produced:
 <p align="center">
   <img src="https://protodot.seamia.net/demo/dlp_star.svg">
 </p>
 
 ### using `-select imports`
+only `imports` dependency graph will be produced:
 <p align="center">
   <img src="https://protodot.seamia.net/demo/dlp_imports.svg">
 </p>
 
 ### using `-select .ListDlpJobs`
+in this particular case, the name of the `rpc` method was specified: this will result in production of the requested `rpc` method, it's encompasing `service` element and all the dependencied of the method:
 <p align="center">
   <img src="https://protodot.seamia.net/demo/dlp_rpc.svg">
 </p>
 
 ### using `-select .AnalyzeDataSourceRiskDetails`
+same as above, but instead of `rpc` method, name of the `message` was specified:
 <p align="center">
   <img src="https://protodot.seamia.net/demo/dlp_message.svg">
 </p>
 
+
+## how to (automatically) generate `.svg` and/or `.png` images from produced `.dot` file
