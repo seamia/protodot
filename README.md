@@ -46,3 +46,34 @@ so far, `args` in `-select args` can take one of the two available forms:
   <img src="https://protodot.seamia.net/pipeline/svg">
 </p>
 
+
+
+
+## an illustration of effects of different `-select` option
+using `https://github.com/googleapis/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto` as the source
+
+### not using `-select`
+<p align="center">
+  <img src="https://protodot.seamia.net/demo/dlp_full.svg">
+</p>
+
+### using `-select *`
+<p align="center">
+  <img src="https://protodot.seamia.net/demo/dlp_star.svg">
+</p>
+
+### using `-select imports`
+<p align="center">
+  <img src="https://protodot.seamia.net/demo/dlp_imports.svg">
+</p>
+
+### using `-select .ListDlpJobs`
+<p align="center">
+  <img src="https://protodot.seamia.net/demo/dlp_rpc.svg">
+</p>
+
+### using `-select .AnalyzeDataSourceRiskDetails`
+<p align="center">
+  <img src="https://protodot.seamia.net/demo/dlp_message.svg">
+</p>
+
