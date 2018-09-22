@@ -48,3 +48,15 @@ type ServicePayload struct {
 	Unique   UniqueName
 	FullName FullName
 }
+
+type ImportNode struct {
+	NodeName    string
+	PackageName string
+	FileName    string
+	Status      string
+}
+
+type ImportLink struct {
+	From string
+	To   string
+}

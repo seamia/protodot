@@ -57,6 +57,12 @@
 		"oneof.entry.missing":	"file:oneline:templates/oneof_entry_missing.tmpl",
 		"oneof.entry.suffix":	"file:oneline:templates/oneof_entry_suffix.tmpl",
 		
+		"imports.header":	"file:templates/begin.tmpl",
+		"imports.node":		"file:templates/import_node.tmpl",
+		"imports.node.missing":	"file:templates/import_node_missing.tmpl",
+		"imports.connection":	"file:templates/import_link.tmpl",
+		"imports.footer":	"file:templates/end.tmpl",
+
 		"missing.node":		"file:templates/missing_node.tmpl",
 		"comment":		"file:templates/comment.tmpl"
 	},
