@@ -15,7 +15,7 @@ you can download pre-built binaries for a few selected environments:
    * [Linux](https://protodot.seamia.net/binaries/linux)
    * [Windows](https://protodot.seamia.net/binaries/windows)
 
-`protodot` output is highly customizable through it's configuration file and a set of templates files.
+`protodot` output is highly customizable through its configuration file and a set of templates files.
 if you installed `protodot` from the binary distribution - you may want to extract aforementioned files by running:
 
 ```
