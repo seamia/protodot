@@ -1120,6 +1120,14 @@ func (pbs *pbstate) showDependencyTree() {
 		return "N" + support.NameToId(name, 16)
 	}
 
+	correctRootFileName := func(name string) string {
+		if name == pbs.proto {
+			parts := strings.Split(strings.Replace(name, "\\", "/", -1), "/")
+			return parts[len(parts)-1]
+		}
+		return name
+	}
+
 	payload := PBS{
 		Package:    pbs.pkg,
 		Protoname:  pbs.proto,
@@ -1136,7 +1144,7 @@ func (pbs *pbstate) showDependencyTree() {
 		payload := ImportNode{
 			NodeName:    getID(name),
 			PackageName: info.packageName,
-			FileName:    info.fileName,
+			FileName:    correctRootFileName(info.fileName),
 			Status:      "",
 		}
 		pbs.applyTemplate(import2template[info.missing], payload)
