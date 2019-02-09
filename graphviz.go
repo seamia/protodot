@@ -11,10 +11,7 @@ import (
 )
 
 // (optionally) running 'graphviz' on the given .dot file
-func graphviz(src string) {
-
-	png := options("generate .png file")
-	svg := options("generate .svg file")
+func graphviz(src string, svg, png bool) {
 
 	if png || svg {
 		if graphviz, err := support.GetLocation(g_config, "graphviz"); err == nil && len(graphviz) > 0 {

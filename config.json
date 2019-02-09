@@ -90,10 +90,11 @@
 		"missing.background":	"greys9:2"
 	},
 	"locations": {
-		"graphviz":	"",
+		"graphviz":     "dot",
 		"generated": 	"${HOME}/protodot/generated",
 		"templates": 	"${config.dir}",
-		"downloads": 	"${HOME}/protodot/downloads"
+		"downloads": 	"${HOME}/protodot/downloads",
+		"action":       ""
 	},
 	"options" : {
 		"allow missing imports":	true,

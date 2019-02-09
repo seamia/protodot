@@ -7,7 +7,6 @@ package main
 //----------------------------------------------------------------------------------------------------------------------
 var g_config map[string]interface{}
 
-
 func options(name string) bool {
 	if g_config != nil && len(name) > 0 {
 		if copts, found := g_config["options"]; found {

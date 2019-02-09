@@ -5,8 +5,8 @@
 package main
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 	"github.com/seamia/tools/support"
 	"io"
 	"net/http"
@@ -18,7 +18,7 @@ import (
 
 func downloadFromUrl(url, filename string) (io.Reader, error) {
 
-	if downloads,err := support.GetLocation(g_config, "downloads"); err == nil && len(downloads) > 0 {
+	if downloads, err := support.GetLocation(g_config, "downloads"); err == nil && len(downloads) > 0 {
 		if len(filename) == 0 {
 			tokens := strings.Split(url, "/")
 			filename = path.Join(downloads, tokens[len(tokens)-1])
@@ -36,7 +36,7 @@ func downloadFromUrl(url, filename string) (io.Reader, error) {
 
 	if Exists(filename) {
 		trace("file already exists. ", url, " maps to ", filename)
-		return os.Open(filename)	// return from cache
+		return os.Open(filename) // return from cache
 	}
 
 	response, err := http.Get(url)
@@ -48,7 +48,7 @@ func downloadFromUrl(url, filename string) (io.Reader, error) {
 
 	if response.StatusCode != 200 {
 		alert("got invalid status.code", response.StatusCode, "while downloading", url)
-		return nil, errors.New("failed to download: "+response.Status)
+		return nil, errors.New("failed to download: " + response.Status)
 	}
 
 	output, err := os.Create(filename)

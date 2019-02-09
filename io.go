@@ -6,6 +6,7 @@ package main
 
 import (
 	"io"
+	"io/ioutil"
 	"os"
 )
 
@@ -16,7 +17,7 @@ type CreateOnWrite struct {
 }
 
 func NewCreateOnWrite(name string) *CreateOnWrite {
-	return &CreateOnWrite{name: name,}
+	return &CreateOnWrite{name: name}
 }
 
 func (cow *CreateOnWrite) Write(p []byte) (n int, err error) {
@@ -69,4 +70,13 @@ func createDirIfMissing(name string) {
 			os.MkdirAll(expanded, 0755) // warning: dropping error on the floor here
 		}
 	}
+}
+
+func loadFileAsBytes(name string) []byte {
+	if bytes, err := ioutil.ReadFile(name); err == nil {
+		return bytes
+	} else {
+		assert("failed to open/read file [", name, "], with error:", err)
+	}
+	return nil
 }
