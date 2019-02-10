@@ -1398,6 +1398,7 @@ var (
 	g_selection  = flag.String("select", "", "Name(s) of the selected elements")
 	g_output     = flag.String("output", "", "Name of the output file")
 	g_grpc       = flag.String("grpc", "", "Port to listen, e.g. :50051")
+	g_action     = flag.String("action", "", "custom action to run upon completion (overwrites config.locations.action)")
 )
 
 //======================================================================================================================
@@ -1459,6 +1460,10 @@ func main() {
 
 	if dir, err := support.GetLocation(config, entryGenerated); err == nil {
 		createDirIfMissing(dir)
+	}
+
+	if len(*g_action) > 0 {
+		support.SetLocation(g_config, "action", *g_action)
 	}
 
 	{ // preload templates
