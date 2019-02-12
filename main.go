@@ -1487,7 +1487,7 @@ func main() {
 	}
 
 	if len(*g_grpc) > 0 {
-		err = grpc_main(*g_grpc)
+		// err = grpc_main(*g_grpc)
 		if err != nil {
 			status("Failed to start daemon:", err)
 		}
