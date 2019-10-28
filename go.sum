@@ -1,0 +1,4 @@
+github.com/emicklei/proto v1.6.8 h1:TgJKjY0I1cec7Xtj0dJGnxXHP0TJRGaqGW44waWqaLA=
+github.com/emicklei/proto v1.6.8/go.mod h1:Dqn751twH9SasYqvA59Lb9Hz+itoJgmMoivX6k7OPZc=
+github.com/seamia/tools v0.0.0-20190210011128-a37c92378810 h1:qSRzz+/izWyzmzcq/BLW5iYN/p1tbdYWJ5/bdt1na6Q=
+github.com/seamia/tools v0.0.0-20190210011128-a37c92378810/go.mod h1:DUw0nHzdxFekNYvC4iZIlAoHg4Vdb87190biG+VCj7A=
