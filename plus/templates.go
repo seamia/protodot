@@ -6,14 +6,15 @@ package plus
 
 import (
 	"errors"
-	"github.com/seamia/tools/assets"
-	"github.com/seamia/tools/support"
 	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/seamia/tools/assets"
+	"github.com/seamia/tools/support"
 )
 
 var g_preloadedTemplates map[string]*template.Template

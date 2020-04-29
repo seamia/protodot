@@ -12,10 +12,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/emicklei/proto"
-	"github.com/seamia/protodot/plus"
-	"github.com/seamia/tools/assets"
-	"github.com/seamia/tools/support"
 	"io"
 	"os"
 	"path"
@@ -24,6 +20,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/emicklei/proto"
+	"github.com/seamia/protodot/plus"
+	"github.com/seamia/tools/assets"
+	"github.com/seamia/tools/support"
 )
 
 type Kind int
@@ -769,7 +770,7 @@ func (pbs *pbstate) resolveType(full FullName, local OriginalName) {
 		return
 	}
 
-	if occurences := len(pbs.translate[local]); occurences > 1 {
+	if occurrences := len(pbs.translate[local]); occurrences > 1 {
 
 		var found FullName
 		for _, one := range pbs.translate[local] {
@@ -1197,7 +1198,7 @@ func process(pbs *pbstate, name string, selection string) bool {
 	}
 
 	var reader io.Reader = nil
-	// need to differenciate between url/path and actual source
+	// need to differentiate between url/path and actual source
 	if strings.Count(name, "\n") > 1 {
 		trace("this seems to be a source code blob")
 		reader = strings.NewReader(name)

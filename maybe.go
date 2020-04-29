@@ -7,13 +7,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/seamia/tools/support"
 	"io"
 	"net/http"
 	"net/url"
 	"os"
 	"path"
 	"strings"
+
+	"github.com/seamia/tools/support"
 )
 
 func downloadFromUrl(url, filename string) (io.Reader, error) {

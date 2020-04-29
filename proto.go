@@ -9,7 +9,7 @@ import (
 )
 
 //----------------------------------------------------------------------------------------------------------------------
-// additions/extentions to "github.com/emicklei/proto"
+// additions/extensions to "github.com/emicklei/proto"
 
 func WithPackage(apply func(*proto.Package)) proto.Handler {
 	return func(v proto.Visitee) {

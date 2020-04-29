@@ -5,10 +5,11 @@
 package main
 
 import (
-	"github.com/seamia/tools/support"
 	"io/ioutil"
 	"os"
 	"os/exec"
+
+	"github.com/seamia/tools/support"
 )
 
 // (optionally) running 'graphviz' on the given .dot file

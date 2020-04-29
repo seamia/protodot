@@ -6,9 +6,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/seamia/tools/support"
 	"strings"
 	"text/template"
+
+	"github.com/seamia/tools/support"
 )
 
 func oneword(t string) string {

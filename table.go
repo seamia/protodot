@@ -6,10 +6,11 @@ package main
 
 import (
 	"bytes"
-	"github.com/emicklei/proto"
-	"github.com/seamia/protodot/plus"
 	"reflect"
 	"strconv"
+
+	"github.com/emicklei/proto"
+	"github.com/seamia/protodot/plus"
 )
 
 //----------------------------------------------------------------------------------------------------------------------

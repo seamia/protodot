@@ -7,12 +7,13 @@ package main
 import (
 	"errors"
 	"flag"
-	"github.com/seamia/tools/support"
 	"io"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
+
+	"github.com/seamia/tools/support"
 )
 
 //----------------------------------------------------------------------------------------------------------------------
