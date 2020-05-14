@@ -9,7 +9,7 @@ transforming your `.proto` files into `.dot` files (and `.svg`, `.png` if you ha
 
 ## installation
 you can download the sources (from this page) and build `protodot` yourself, or
-you can download pre-built binaries for a few selected environments:
+you can download pre-built binaries for a few selected environments (or from [here](https://github.com/seamia/protodot/tree/master/binaries)):
 
    * [Darwin](https://protodot.seamia.net/binaries/darwin)
    * [Linux](https://protodot.seamia.net/binaries/linux)
