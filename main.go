@@ -60,6 +60,8 @@ type tinfo struct {
 	unique   UniqueName // "WhatEver$1"
 	name     string     // "WhatEver"
 
+	fieldOptions map[string]string
+
 	typename string // "enum", ...
 	filename string
 	comment  string
@@ -74,7 +76,6 @@ type pkgInfo struct {
 	packageName  string
 	fileName     string
 	dependencies []string
-	weak         bool
 	missing      bool
 	proto3       bool
 }
@@ -101,13 +102,6 @@ type pbstate struct {
 func (pbs *pbstate) full2info(name FullName) *tinfo {
 	if back, found := pbs.types237[name]; found {
 		return &back
-	}
-	return nil
-}
-
-func (pbs *pbstate) unique2info(name UniqueName) *tinfo {
-	if full, found := pbs.knownNames[name]; found {
-		return pbs.full2info(full)
 	}
 	return nil
 }
@@ -149,17 +143,6 @@ func (pbs *pbstate) target() io.Writer {
 		return pbs.writer
 	} else {
 		return os.Stdout
-	}
-}
-
-func (pbs *pbstate) addIncMapping(mapping map[string]string) {
-	if mapping != nil && len(mapping) > 0 {
-		if pbs.incMapping == nil {
-			pbs.incMapping = make(map[string]string)
-		}
-		for k, v := range mapping {
-			pbs.incMapping[k] = v
-		}
 	}
 }
 
@@ -300,7 +283,7 @@ func (pbs *pbstate) expandSelection(selection string) ([]FullName, error) {
 			continue
 		}
 		locals := make([]FullName, 0)
-		for fulltype, _ := range pbs.types237 {
+		for fulltype := range pbs.types237 {
 			if strings.HasSuffix(string(fulltype), root) {
 				locals = append(locals, fulltype)
 			}
@@ -308,8 +291,8 @@ func (pbs *pbstate) expandSelection(selection string) ([]FullName, error) {
 
 		if len(locals) == 0 {
 			// let's do a more relaxed search
-			for fulltype, _ := range pbs.types237 {
-				if strings.Index(string(fulltype), root) >= 0 {
+			for fulltype := range pbs.types237 {
+				if strings.Contains(string(fulltype), root) {
 					locals = append(locals, fulltype)
 				}
 			}
@@ -343,7 +326,7 @@ func (pbs *pbstate) showSelectedInclusion(selection string) {
 	posttypes := make(map[FullName]tinfo)
 	inclusions := make(map[UniqueName]map[UniqueName]int)
 
-	for index, _ := range matches {
+	for index := range matches {
 		info := pbs.types237[matches[index]]
 
 		if len(info.parent) > 0 {
@@ -413,7 +396,7 @@ func (pbs *pbstate) showSelectedInclusion(selection string) {
 		for key, value := range pbs.inclusions {
 			if strings.HasPrefix(string(key), string(unique)) {
 				trace("          checking [", key, "]")
-				for child, _ := range value {
+				for child := range value {
 					if fullchild, found := pbs.knownNames[child]; found {
 						if _, found := types[fullchild]; !found {
 							// we have not seen this type before
@@ -515,7 +498,7 @@ func (pbs *pbstate) showInclusion(groupByPackages bool, leaveRootPackageUnwrappe
 
 	// from, field, to
 	for from, tos := range pbs.inclusions {
-		for to, _ := range tos {
+		for to := range tos {
 
 			bits := strings.Split(string(from), ":")
 			args := Relationship{
@@ -536,17 +519,6 @@ func (pbs *pbstate) showInclusion(groupByPackages bool, leaveRootPackageUnwrappe
 	}
 
 	pbs.applyTemplate("document.footer", payload)
-}
-
-func (pbs *pbstate) uniqueIsMessage(unique UniqueName) bool {
-	if full, found := pbs.knownNames[unique]; found {
-		if info, found := pbs.types237[full]; found {
-			if info.typename == typenameMessage {
-				return true
-			}
-		}
-	}
-	return false
 }
 
 func (pbs *pbstate) handleSyntax(syntax *proto.Syntax) {
@@ -733,11 +705,6 @@ func getFullName(what interface{}) FullName {
 
 func (pbs *pbstate) handleMessageDeclaration(msg *proto.Message) {
 
-	if msg.IsExtend {
-		debug("-- excluding 'extend' messages:", msg.Name)
-		return
-	}
-
 	parent := getParent(msg.Parent)
 	fullname := getFullName(msg)
 	unique := pbs.getUniqueName(OriginalName(msg.Name), fullname)
@@ -747,10 +714,11 @@ func (pbs *pbstate) handleMessageDeclaration(msg *proto.Message) {
 	debug("*** type definition:", pbs.pkg, ">>", msg.Name, ">>", parent, ">>>>>>>>", fullname)
 
 	pbs.types237[fullname] = tinfo{
-		typename: typenameMessage,
-		fullname: fullname,
-		unique:   unique,
-		name:     msg.Name,
+		typename:     typenameMessage,
+		fullname:     fullname,
+		unique:       unique,
+		name:         msg.Name,
+		fieldOptions: make(map[string]string),
 
 		filename:  msg.Position.Filename,
 		comment:   parent,
@@ -868,6 +836,17 @@ var isRepeated = map[bool]string{
 	true:  "[...]",
 }
 
+func getOptions(what []*proto.Option) map[string]string {
+	options := make(map[string]string)
+	for _, option := range what {
+		if option.Constant.IsString {
+			options[strings.Trim(option.Name, "()")] = option.Constant.Source
+		}
+	}
+
+	return options
+}
+
 func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 
 	if msg.IsExtend {
@@ -886,7 +865,6 @@ func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 	for _, element := range msg.Elements {
 		switch actual := element.(type) {
 		case *proto.NormalField:
-
 			if !isSimpleType(actual.Type) {
 				if inf := pbs.getResolution(full, OriginalName(actual.Type)); inf != nil {
 					pbs.encounteredType(info.unique, actual.Name, inf.unique)
@@ -896,18 +874,26 @@ func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 				}
 			}
 
+			extra := ""
 			repeated := isRepeated[actual.Repeated]
-			t.addRow(repeated, actual.Type, actual.Name, strconv.Itoa(actual.Sequence), pbs.getKind(full, OriginalName(actual.Type)))
-			break
-
+			if actual.Field.Options != nil {
+				extras := []string{}
+				for extraKey, extraValue := range getOptions(actual.Field.Options) {
+					key := strings.Split(extraKey, ".")
+					keyName := strings.ToUpper(key[len(key)-1])
+					extras = append(extras, fmt.Sprintf("<b>%s</b>: %s", keyName, extraValue))
+				}
+				extra = strings.Join(extras, ", ")
+			}
+			t.addRow(repeated, actual.Type, actual.Name, strconv.Itoa(actual.Sequence), pbs.getKind(full, OriginalName(actual.Type)), extra)
 		case *proto.Enum:
-			debug("\t", "enum:", actual.Name)
+			debug("\t", " enum:", actual.Name)
 		case *proto.Reserved:
-			debug("\t", "reserved:", actual.FieldNames)
+			debug("\t", " reserved:", actual.FieldNames)
 		case *proto.Option:
-			debug("\t", "option:", actual.Name)
+			debug("\t", " option:", actual.Name)
 		case *proto.Message:
-			debug("\t", "message:", actual.Name)
+			debug("\t", " message:", actual.Name)
 		case *proto.Oneof:
 			pbs.onOneof(full, info.unique, actual)
 			t.addOneof(full, actual, pbs)
@@ -926,13 +912,13 @@ func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 			}
 
 		case *proto.Comment:
-			ignoring("\t", "comment:", actual.Message())
+			debug("\t", " comment:", actual.Message())
 
 		case *proto.Extensions:
-			ignoring("\t", "extensions:", "--ignored for now")
+			debug("\t", " extensions:", "--ignored for now")
 
 		case *proto.Group:
-			ignoring("ignoring group for now")
+			debug(" ignoring group for now")
 
 		default:
 			rname := reflect.TypeOf(actual).Elem().Name()
@@ -1334,8 +1320,6 @@ func process(pbs *pbstate, name string, selection string) bool {
 			pbs.showInclusion(true, true)
 		}
 
-	} else {
-		// this is not a root .proto file
 	}
 	return true
 }

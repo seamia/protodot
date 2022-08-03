@@ -52,7 +52,7 @@ var kind2entry = map[Kind]string{
 	Missing: "entry.missing",
 }
 
-func (t *table) addRow(repeated, typ, name, ordinal string, kind Kind) {
+func (t *table) addRow(repeated, typ, name, ordinal string, kind Kind, extra string) {
 	tmplName := kind2entry[kind]
 	if len(tmplName) > 0 {
 		entry := OneOfEntry{
@@ -60,6 +60,7 @@ func (t *table) addRow(repeated, typ, name, ordinal string, kind Kind) {
 			Type:    typ,
 			Ordinal: ordinal,
 			Prefix:  repeated,
+			Extra:   extra,
 		}
 		if err := plus.ApplyTemplate(tmplName, t, entry); err != nil {
 			alert("failed to render", err)
@@ -102,6 +103,7 @@ type OneOfEntry struct {
 	Type    string
 	Ordinal string
 	Prefix  string
+	Extra   string
 }
 
 var kind2template = map[Kind]string{

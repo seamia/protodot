@@ -2,6 +2,7 @@
 	<TD ALIGN="{{settings "text.align.repeat"}}">{{.Prefix}}</TD>
 	<TD ALIGN="{{settings "text.align.sequence"}}">{{.Ordinal}}</TD>
 	<TD ALIGN="{{settings "text.align.name"}}">{{.Name}}</TD>
+	<TD{{if .Extra}} BGCOLOR="{{color "extras.background"}}"{{end}} ALIGN="{{settings "extra.align"}}">{{.Extra}}</TD>
 	<TD BGCOLOR="{{color "type.simple"}}" PORT="po{{.Name}}" ALIGN="{{settings "text.align.type"}}" TITLE="{{.Type}}">
 		<i>{{.Type}}</i>
 	</TD>
