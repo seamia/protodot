@@ -50,6 +50,7 @@ var kind2entry = map[Kind]string{
 	Message: "entry.message",
 	Enum:    "entry.enum",
 	Missing: "entry.missing",
+	Comment: "entry.comment",
 }
 
 func (t *table) addRow(repeated, typ, name, ordinal string, kind Kind, extra string) {

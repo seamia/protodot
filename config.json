@@ -31,6 +31,7 @@
 		"message.prefix": "file:oneline:templates/message_prefix.tmpl",
 		"message.suffix": "file:templates/message_suffix.tmpl",
 		"entry.simple": "file:oneline:templates/entry_simple.tmpl",
+		"entry.comment": "file:oneline:templates/entry_comment.tmpl",
 		"entry.enum": "file:oneline:templates/entry_enum.tmpl",
 		"entry.message": "file:oneline:templates/entry_message.tmpl",
 		"entry.missing": "file:oneline:templates/entry_missing.tmpl",

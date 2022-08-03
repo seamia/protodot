@@ -4,6 +4,7 @@
 ./templates/end.tmpl
 ./templates/entry.tmpl
 ./templates/entry_enum.tmpl
+./templates/entry_commenttmpl
 ./templates/entry_message.tmpl
 ./templates/entry_missing.tmpl
 ./templates/entry_simple.tmpl
