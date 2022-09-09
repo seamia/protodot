@@ -448,7 +448,7 @@ func (pbs *pbstate) showSelectedInclusion(selection string) {
 
 	backupTypes, backupInclusions := pbs.types237, pbs.inclusions
 	pbs.types237, pbs.inclusions = types, inclusions
-	pbs.showInclusion(false, true)
+	pbs.showInclusion(*g_cluster, true)
 	pbs.types237, pbs.inclusions = backupTypes, backupInclusions
 }
 
@@ -1331,7 +1331,7 @@ func process(pbs *pbstate, name string, selection string) bool {
 				pbs.showSelectedInclusion(selection)
 			}
 		} else {
-			pbs.showInclusion(true, true)
+			pbs.showInclusion(*g_cluster, true)
 		}
 
 	} else {
@@ -1395,13 +1395,15 @@ func applyToAllFilesFromList(listfilename string, selection string) {
 const configDefaultName = "config.json"
 
 var (
+	g_cluster    = flag.Bool("cluster", true, "Cluster elements from the same package together")
+
+	g_action     = flag.String("action", "", "Custom action to run upon completion (overwrites config.locations.action)")
 	g_configPath = flag.String("config", configDefaultName, "Location and name of the configuration file")
-	g_logPath    = flag.String("log", "", "Location and name of the debug log file")
-	g_source     = flag.String("src", "", "Location and name of the source file (required)")
-	g_selection  = flag.String("select", "", "Name(s) of the selected elements")
-	g_output     = flag.String("output", "", "Name of the output file")
 	g_grpc       = flag.String("grpc", "", "Port to listen, e.g. :50051")
-	g_action     = flag.String("action", "", "custom action to run upon completion (overwrites config.locations.action)")
+	g_logPath    = flag.String("log", "", "Location and name of the debug log file")
+	g_output     = flag.String("output", "", "Name of the output file")
+	g_selection  = flag.String("select", "", "Name(s) of the selected elements")
+	g_source     = flag.String("src", "", "Location and name of the source file (required)")
 )
 
 //======================================================================================================================
