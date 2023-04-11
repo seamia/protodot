@@ -6,8 +6,9 @@ package main
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
+
+	"github.com/seamia/tools/support"
 )
 
 type CreateOnWrite struct {
@@ -36,7 +37,7 @@ func (cow *CreateOnWrite) Write(p []byte) (n int, err error) {
 	return cow.writer.Write(p)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------
 type ForkWriter struct {
 	writers []io.Writer
 }
@@ -73,10 +74,26 @@ func createDirIfMissing(name string) {
 }
 
 func loadFileAsBytes(name string) []byte {
-	if bytes, err := ioutil.ReadFile(name); err == nil {
+	if bytes, err := os.ReadFile(name); err == nil {
 		return bytes
 	} else {
 		assert("failed to open/read file [", name, "], with error:", err)
 	}
 	return nil
+}
+
+func getTargetPath() string {
+	var target string
+
+	// 1. pull location from config file
+	if dir, err := support.GetLocation(g_config, entryGenerated); err == nil {
+		target = dir
+	}
+
+	// 2. use cli provided value (if present)
+	if len(*g_generated) > 0 {
+		target = *g_generated
+	}
+
+	return target
 }

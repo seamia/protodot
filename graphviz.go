@@ -5,7 +5,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 
@@ -31,7 +30,7 @@ func graphviz(src string, svg, png bool) {
 			if svg {
 				status("generating .svg file")
 				if output, e := exec.Command(graphviz, "-Tsvg", src).Output(); e == nil {
-					if err := ioutil.WriteFile(svgPath, output, 0755); err != nil {
+					if err := os.WriteFile(svgPath, output, 0755); err != nil {
 						status("error on write", err)
 						svgPath = ""
 					}
@@ -44,7 +43,7 @@ func graphviz(src string, svg, png bool) {
 			if png {
 				status("generating .png file")
 				if output, e := exec.Command(graphviz, "-Tpng", src).Output(); e == nil {
-					if err := ioutil.WriteFile(pngPath, output, 0755); err != nil {
+					if err := os.WriteFile(pngPath, output, 0755); err != nil {
 						status("error on write", err)
 						pngPath = ""
 					}

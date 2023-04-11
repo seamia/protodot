@@ -7,7 +7,6 @@ package plus
 import (
 	"errors"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -24,7 +23,7 @@ func loadExternals(name, tmplDir string) (string, error) {
 	if len(tmplDir) > 0 {
 		tmp := os.ExpandEnv(filepath.Join(tmplDir, name))
 		if support.Exists(tmp) {
-			data, err := ioutil.ReadFile(tmp)
+			data, err := os.ReadFile(tmp)
 			if err == nil {
 				return string(data[:]), nil
 			}
@@ -34,7 +33,7 @@ func loadExternals(name, tmplDir string) (string, error) {
 
 	name = os.ExpandEnv(name)
 	if support.Exists(name) {
-		data, err := ioutil.ReadFile(name)
+		data, err := os.ReadFile(name)
 		if err == nil {
 			return string(data[:]), nil
 		}
@@ -43,7 +42,7 @@ func loadExternals(name, tmplDir string) (string, error) {
 
 	// last-ditch effort: let's look into the assets:
 	if reader, err := assets.Open(name); err == nil {
-		if raw, err := ioutil.ReadAll(reader); err == nil {
+		if raw, err := io.ReadAll(reader); err == nil {
 			return string(raw[:]), nil
 		}
 	}

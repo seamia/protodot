@@ -300,7 +300,7 @@ func (pbs *pbstate) expandSelection(selection string) ([]FullName, error) {
 			continue
 		}
 		locals := make([]FullName, 0)
-		for fulltype, _ := range pbs.types237 {
+		for fulltype := range pbs.types237 {
 			if strings.HasSuffix(string(fulltype), root) {
 				locals = append(locals, fulltype)
 			}
@@ -308,7 +308,7 @@ func (pbs *pbstate) expandSelection(selection string) ([]FullName, error) {
 
 		if len(locals) == 0 {
 			// let's do a more relaxed search
-			for fulltype, _ := range pbs.types237 {
+			for fulltype := range pbs.types237 {
 				if strings.Index(string(fulltype), root) >= 0 {
 					locals = append(locals, fulltype)
 				}
@@ -343,7 +343,7 @@ func (pbs *pbstate) showSelectedInclusion(selection string) {
 	posttypes := make(map[FullName]tinfo)
 	inclusions := make(map[UniqueName]map[UniqueName]int)
 
-	for index, _ := range matches {
+	for index := range matches {
 		info := pbs.types237[matches[index]]
 
 		if len(info.parent) > 0 {
@@ -413,7 +413,7 @@ func (pbs *pbstate) showSelectedInclusion(selection string) {
 		for key, value := range pbs.inclusions {
 			if strings.HasPrefix(string(key), string(unique)) {
 				trace("          checking [", key, "]")
-				for child, _ := range value {
+				for child := range value {
 					if fullchild, found := pbs.knownNames[child]; found {
 						if _, found := types[fullchild]; !found {
 							// we have not seen this type before
@@ -515,7 +515,7 @@ func (pbs *pbstate) showInclusion(groupByPackages bool, leaveRootPackageUnwrappe
 
 	// from, field, to
 	for from, tos := range pbs.inclusions {
-		for to, _ := range tos {
+		for to := range tos {
 
 			bits := strings.Split(string(from), ":")
 			args := Relationship{
@@ -1271,12 +1271,7 @@ func process(pbs *pbstate, name string, selection string) bool {
 
 	if pbs.diveDepth == 0 {
 
-		genDir, err := support.GetLocation(g_config, entryGenerated)
-		if err != nil {
-			trace("missing 'generated' location in the provided config")
-			genDir = ""
-		}
-
+		genDir := getTargetPath()
 		outputFileName := getProtoName(original, pbs.selection)
 		if len(*g_output) > 0 {
 			outputFileName = *g_output
@@ -1400,11 +1395,12 @@ var (
 	g_source     = flag.String("src", "", "Location and name of the source file (required)")
 	g_selection  = flag.String("select", "", "Name(s) of the selected elements")
 	g_output     = flag.String("output", "", "Name of the output file")
+	g_generated  = flag.String("generated", "", "Where to store generated files (overwrites config.locations.generated)")
 	g_grpc       = flag.String("grpc", "", "Port to listen, e.g. :50051")
 	g_action     = flag.String("action", "", "custom action to run upon completion (overwrites config.locations.action)")
 )
 
-//======================================================================================================================
+// ======================================================================================================================
 func main() {
 
 	if len(os.Args) == 1 {
@@ -1423,11 +1419,12 @@ func main() {
 				// create dirs specified in the loaded config
 				config, err := support.LoadConfig(assets.AssetUriPrefix+configDefaultName, false)
 				if err == nil {
-					for _, name := range []string{entryGenerated, "downloads"} {
+					for _, name := range []string{"downloads"} {
 						if dir, err := support.GetLocation(config, name); err == nil {
 							createDirIfMissing(dir)
 						}
 					}
+					createDirIfMissing(getTargetPath())
 				}
 			}
 			return
@@ -1461,9 +1458,7 @@ func main() {
 		return
 	}
 
-	if dir, err := support.GetLocation(config, entryGenerated); err == nil {
-		createDirIfMissing(dir)
-	}
+	createDirIfMissing(getTargetPath())
 
 	if len(*g_action) > 0 {
 		support.SetLocation(g_config, "action", *g_action)

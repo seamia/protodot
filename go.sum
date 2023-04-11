@@ -1,4 +1,11 @@
+github.com/dimfeld/httptreemux v5.0.1+incompatible/go.mod h1:rbUlSV+CCpv/SuqUTP/8Bk2O3LyUV436/yaRGkhP6Z0=
 github.com/emicklei/proto v1.6.8 h1:TgJKjY0I1cec7Xtj0dJGnxXHP0TJRGaqGW44waWqaLA=
 github.com/emicklei/proto v1.6.8/go.mod h1:Dqn751twH9SasYqvA59Lb9Hz+itoJgmMoivX6k7OPZc=
+github.com/emicklei/proto v1.11.1 h1:CBZwNVwPJvkdevxvsoCuFedF9ENiBz0saen3L9y0OTA=
+github.com/emicklei/proto v1.11.1/go.mod h1:rn1FgRS/FANiZdD2djyH7TMA9jdRDcYQ9IEN9yvjX0A=
 github.com/seamia/tools v0.0.0-20190210011128-a37c92378810 h1:qSRzz+/izWyzmzcq/BLW5iYN/p1tbdYWJ5/bdt1na6Q=
 github.com/seamia/tools v0.0.0-20190210011128-a37c92378810/go.mod h1:DUw0nHzdxFekNYvC4iZIlAoHg4Vdb87190biG+VCj7A=
+github.com/seamia/tools v0.0.0-20210808181415-c11f096de91a h1:ssXq9eTZ7lQjhJE1/MrHDYv02YJdBHDEaxMc30/iSFs=
+github.com/seamia/tools v0.0.0-20210808181415-c11f096de91a/go.mod h1:DUw0nHzdxFekNYvC4iZIlAoHg4Vdb87190biG+VCj7A=
+github.com/seamia/tools/assets v0.0.0-20210808181415-c11f096de91a h1:mrgjC4SCeF9A4l71w1UmvAR/4bZtjlfVpJKaO0VLEQs=
+github.com/seamia/tools/assets v0.0.0-20210808181415-c11f096de91a/go.mod h1:slgOuk7osjlUuGDSZG4BuNOMJgx9oRLGL9PTjd7L3ZU=
