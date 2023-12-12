@@ -14,8 +14,7 @@ you can find an online demo of this tool [here](https://protodot.seamia.net)
 you can download the sources (from this page) and build `protodot` yourself, or
 you can download pre-built binaries for a few selected environments (or from [here](https://github.com/seamia/protodot/tree/master/binaries)):
 
-   * [Darwin/x86](https://protodot.seamia.net/binaries/darwin)
-   * [Darwin/arm](https://protodot.seamia.net/binaries/darwin.arm)
+   * Darwin ([x86](https://protodot.seamia.net/binaries/darwin), [arm](https://protodot.seamia.net/binaries/darwin.arm))
    * [Linux](https://protodot.seamia.net/binaries/linux)
    * [Wasm](https://protodot.seamia.net/binaries/wasm)
    * [Windows](https://protodot.seamia.net/binaries/windows)
