@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- seamia/protodot (support file) -->
+<svg width="837pt" height="280pt" viewBox="0.00 0.00 837.00 280.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs><style>svg {background-color: none;color-scheme:light dark;} @media (prefers-color-scheme:dark) {svg {background-color: papayawhip;}}</style></defs>
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 276)">
+<title>protodotpipeline</title>
+<g id="a_graph0"><a xlink:title="protodot pipeline">
+<text text-anchor="middle" x="414.5" y="-20.4" font-family="Times New Roman,serif" font-size="12.00">protodot pipeline</text>
+<text text-anchor="middle" x="414.5" y="-7.4" font-family="Times New Roman,serif" font-size="12.00">(github.com/seamia/protodot)</text>
+</a>
+</g>
+<g id="clust1" class="cluster"><title>cluster_user</title>
+<g id="a_clust1"><a xlink:title="...">
+<polygon fill="#ff7f00" stroke="#ff7f00" points="8,-119 8,-248 152,-248 152,-119 8,-119"/>
+<text text-anchor="middle" x="80" y="-232.8" font-family="Times New Roman,serif" font-size="14.00">user</text>
+</a>
+</g>
+</g>
+<g id="clust3" class="cluster"><title>cluster_main2</title>
+<g id="a_clust3"><a xlink:title="...">
+<polygon fill="gold" stroke="gold" points="172,-42 172,-225 333,-225 333,-42 172,-42"/>
+<text text-anchor="middle" x="252.5" y="-209.8" font-family="Times New Roman,serif" font-size="14.00">protodot</text>
+</a>
+</g>
+</g>
+<g id="clust5" class="cluster"><title>cluster_output</title>
+<g id="a_clust5"><a xlink:title="...">
+<polygon fill="#caff70" stroke="#caff70" points="353,-135 353,-264 821,-264 821,-135 353,-135"/>
+<text text-anchor="middle" x="587" y="-248.8" font-family="Times New Roman,serif" font-size="14.00">output</text>
+</a>
+</g>
+</g>
+<g id="clust7" class="cluster"><title>cluster_graphviz</title>
+<g id="a_clust7"><a xlink:title="...">
+<polygon fill="white" stroke="white" points="507,-150 507,-225 629,-225 629,-150 507,-150"/>
+<text text-anchor="middle" x="568" y="-209.8" font-family="Times New Roman,serif" font-size="14.00">graphviz (optional)</text>
+</a>
+</g>
+</g>
+<!-- proto -->
+<g id="node1" class="node"><title>proto</title>
+<g id="a_node1"><a xlink:href="https://protodot.seamia.net/pipeline/proto" xlink:title="original .proto file">
+<polygon fill="none" stroke="black" points="132,-217 22,-217 22,-181 138,-181 138,-211 132,-217"/>
+<polyline fill="none" stroke="black" points="132,-217 132,-211 "/>
+<polyline fill="none" stroke="black" points="138,-211 132,-211 "/>
+<text text-anchor="middle" x="80" y="-195.3" font-family="Times New Roman,serif" font-size="14.00">original .proto file</text>
+</a>
+</g>
+</g>
+<!-- protodot -->
+<g id="node3" class="node"><title>protodot</title>
+<g id="a_node3"><a xlink:href="https://github.com/seamia/protodot" xlink:title="protodot app">
+<polygon fill="none" stroke="black" points="298,-194 211,-194 207,-190 207,-158 294,-158 298,-162 298,-194"/>
+<polyline fill="none" stroke="black" points="294,-190 207,-190 "/>
+<polyline fill="none" stroke="black" points="294,-190 294,-158 "/>
+<polyline fill="none" stroke="black" points="294,-190 298,-194 "/>
+<text text-anchor="middle" x="252.5" y="-172.3" font-family="Times New Roman,serif" font-size="14.00">protodot app</text>
+</a>
+</g>
+</g>
+<!-- proto&#45;&gt;protodot -->
+<g id="edge1" class="edge"><title>proto&#45;&gt;protodot</title>
+<path fill="none" stroke="black" d="M138.248,-191.277C157.104,-188.734 178.016,-185.913 196.686,-183.394"/>
+<polygon fill="black" stroke="black" points="197.357,-186.835 206.8,-182.03 196.422,-179.898 197.357,-186.835"/>
+</g>
+<!-- protos -->
+<g id="node2" class="node"><title>protos</title>
+<polygon fill="none" stroke="black" points="138,-163 16,-163 16,-127 144,-127 144,-157 138,-163"/>
+<polyline fill="none" stroke="black" points="138,-163 138,-157 "/>
+<polyline fill="none" stroke="black" points="144,-157 138,-157 "/>
+<text text-anchor="middle" x="80" y="-141.3" font-family="Times New Roman,serif" font-size="14.00">included .proto files</text>
+</g>
+<!-- protos&#45;&gt;protodot -->
+<g id="edge2" class="edge"><title>protos&#45;&gt;protodot</title>
+<path fill="none" stroke="black" d="M144.003,-156.455C161.286,-159.597 179.88,-162.978 196.664,-166.03"/>
+<polygon fill="black" stroke="black" points="196.388,-169.537 206.853,-167.882 197.64,-162.65 196.388,-169.537"/>
+</g>
+<!-- dot -->
+<g id="node6" class="node"><title>dot</title>
+<g id="a_node6"><a xlink:href="https://protodot.seamia.net/pipeline/dot" xlink:title="resulting .dot file">
+<polygon fill="none" stroke="black" points="465,-194 361,-194 361,-158 471,-158 471,-188 465,-194"/>
+<polyline fill="none" stroke="black" points="465,-194 465,-188 "/>
+<polyline fill="none" stroke="black" points="471,-188 465,-188 "/>
+<text text-anchor="middle" x="416" y="-172.3" font-family="Times New Roman,serif" font-size="14.00">resulting .dot file</text>
+</a>
+</g>
+</g>
+<!-- protodot&#45;&gt;dot -->
+<g id="edge5" class="edge"><title>protodot&#45;&gt;dot</title>
+<path fill="none" stroke="black" d="M298.058,-176C314.292,-176 332.987,-176 350.598,-176"/>
+<polygon fill="black" stroke="black" points="350.816,-179.5 360.816,-176 350.816,-172.5 350.816,-179.5"/>
+</g>
+<!-- config -->
+<g id="node4" class="node"><title>config</title>
+<polygon fill="none" stroke="black" points="301.5,-140 197.5,-140 197.5,-104 307.5,-104 307.5,-134 301.5,-140"/>
+<polyline fill="none" stroke="black" points="301.5,-140 301.5,-134 "/>
+<polyline fill="none" stroke="black" points="307.5,-134 301.5,-134 "/>
+<text text-anchor="middle" x="252.5" y="-118.3" font-family="Times New Roman,serif" font-size="14.00">configuration file</text>
+</g>
+<!-- config&#45;&gt;protodot -->
+<g id="edge3" class="edge"><title>config&#45;&gt;protodot</title>
+<path fill="none" stroke="black" d="M252.5,-140.141C252.5,-142.623 252.5,-145.105 252.5,-147.587"/>
+<polygon fill="black" stroke="black" points="249,-147.79 252.5,-157.79 256,-147.79 249,-147.79"/>
+</g>
+<!-- templates -->
+<g id="node5" class="node"><title>templates</title>
+<g id="a_node5"><a xlink:href="https://github.com/seamia/protodot/tree/master/templates" xlink:title="rendering template files">
+<polygon fill="none" stroke="black" points="319,-86 180,-86 180,-50 325,-50 325,-80 319,-86"/>
+<polyline fill="none" stroke="black" points="319,-86 319,-80 "/>
+<polyline fill="none" stroke="black" points="325,-80 319,-80 "/>
+<text text-anchor="middle" x="252.5" y="-64.3" font-family="Times New Roman,serif" font-size="14.00">rendering template files</text>
+</a>
+</g>
+</g>
+<!-- templates&#45;&gt;protodot -->
+<g id="edge4" class="edge"><title>templates&#45;&gt;protodot</title>
+<path fill="none" stroke="black" d="M179.734,-84.017C172.119,-88.9975 165.784,-95.5044 162,-104 153.665,-122.716 154.304,-138.674 172,-149 179.854,-153.583 188.597,-157.525 197.345,-160.869"/>
+<polygon fill="black" stroke="black" points="196.202,-164.177 206.797,-164.265 198.569,-157.59 196.202,-164.177"/>
+</g>
+<!-- graphviz -->
+<g id="node9" class="node"><title>graphviz</title>
+<g id="a_node9"><a xlink:href="https://graphviz.gitlab.io/download/" xlink:title="graphviz">
+<polygon fill="none" stroke="black" points="600,-194 540,-194 536,-190 536,-158 596,-158 600,-162 600,-194"/>
+<polyline fill="none" stroke="black" points="596,-190 536,-190 "/>
+<polyline fill="none" stroke="black" points="596,-190 596,-158 "/>
+<polyline fill="none" stroke="black" points="596,-190 600,-194 "/>
+<text text-anchor="middle" x="568" y="-172.3" font-family="Times New Roman,serif" font-size="14.00">graphviz</text>
+</a>
+</g>
+</g>
+<!-- dot&#45;&gt;graphviz -->
+<g id="edge6" class="edge"><title>dot&#45;&gt;graphviz</title>
+<path fill="none" stroke="black" d="M471.153,-176C489.083,-176 508.739,-176 525.558,-176"/>
+<polygon fill="black" stroke="black" points="525.624,-179.5 535.624,-176 525.624,-172.5 525.624,-179.5"/>
+</g>
+<!-- png -->
+<g id="node7" class="node"><title>png</title>
+<g id="a_node7"><a xlink:href="https://protodot.seamia.net/pipeline/png" xlink:title="generated .png image">
+<polygon fill="none" stroke="black" points="800,-179 672,-179 672,-143 806,-143 806,-173 800,-179"/>
+<polyline fill="none" stroke="black" points="800,-179 800,-173 "/>
+<polyline fill="none" stroke="black" points="806,-173 800,-173 "/>
+<text text-anchor="middle" x="739" y="-157.3" font-family="Times New Roman,serif" font-size="14.00">generated .png image</text>
+</a>
+</g>
+</g>
+<!-- svg -->
+<g id="node8" class="node"><title>svg</title>
+<g id="a_node8"><a xlink:href="https://protodot.seamia.net/pipeline/svg" xlink:title="generated .svg graphics">
+<polygon fill="none" stroke="black" points="807,-233 665,-233 665,-197 813,-197 813,-227 807,-233"/>
+<polyline fill="none" stroke="black" points="807,-233 807,-227 "/>
+<polyline fill="none" stroke="black" points="813,-227 807,-227 "/>
+<text text-anchor="middle" x="739" y="-211.3" font-family="Times New Roman,serif" font-size="14.00">generated .svg graphics</text>
+</a>
+</g>
+</g>
+<!-- graphviz&#45;&gt;png -->
+<g id="edge7" class="edge"><title>graphviz&#45;&gt;png</title>
+<path fill="none" stroke="black" d="M600.392,-173.214C617.697,-171.678 639.999,-169.698 661.591,-167.782"/>
+<polygon fill="black" stroke="black" points="662.122,-171.249 671.773,-166.878 661.503,-164.276 662.122,-171.249"/>
+</g>
+<!-- graphviz&#45;&gt;svg -->
+<g id="edge8" class="edge"><title>graphviz&#45;&gt;svg</title>
+<path fill="none" stroke="black" d="M600.392,-183.244C615.907,-186.825 635.439,-191.332 654.875,-195.817"/>
+<polygon fill="black" stroke="black" points="654.167,-199.246 664.698,-198.084 655.741,-192.425 654.167,-199.246"/>
+</g>
+</g>
+</svg>

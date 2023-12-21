@@ -5,9 +5,7 @@ transforming your `.proto` files into `.dot` files (and `.svg`, `.png` if you ha
 you can find an online demo of this tool [here](https://protodot.seamia.net)
 
 ## data pipeline
-<p align="center">
-  <img src="https://protodot.seamia.net/pipeline.svg">
-</p>
+<p align="center"><img src="./assets/pipeline.svg"></p>
 
 
 ## installation
@@ -48,9 +46,7 @@ so far, `args` in `-select args` can take one of the three available forms:
 
 
 ## an example of output
-<p align="center">
-  <img src="https://protodot.seamia.net/pipeline/svg">
-</p>
+<p align="center"><img src="./assets/one.dot.svg"></p>
 
 
 
@@ -60,33 +56,23 @@ using `https://github.com/googleapis/googleapis/blob/master/google/privacy/dlp/v
 
 ### not using `-select`
 everything declared in the root `.proto` file and all the `imports` will be produced:
-<p align="center">
-  <img src="https://protodot.seamia.net/demo/dlp_full.svg">
-</p>
+<p align="center"><img src="./assets/dlp_full.svg"></p>
 
 ### using `-select *`
 only elements declared in the root `.proto` file and their dependencies will be produced:
-<p align="center">
-  <img src="https://protodot.seamia.net/demo/dlp_star.svg">
-</p>
+<p align="center"><img src="./assets/dlp_star.svg"></p>
 
 ### using `-select imports`
 only `imports` dependency graph will be produced:
-<p align="center">
-  <img src="https://protodot.seamia.net/demo/dlp_imports.svg">
-</p>
+<p align="center"><img src="./assets/dlp_imports.svg"></p>
 
 ### using `-select .ListDlpJobs`
 in this particular case, the name of the `rpc` method was specified: this will result in production of the requested `rpc` method, it's encompasing `service` element and all the dependencied of the method:
-<p align="center">
-  <img src="https://protodot.seamia.net/demo/dlp_rpc.svg">
-</p>
+<p align="center"><img src="./assets/dlp_rpc.svg"></p>
 
 ### using `-select .AnalyzeDataSourceRiskDetails`
 same as above, but instead of `rpc` method, name of the `message` was specified:
-<p align="center">
-  <img src="https://protodot.seamia.net/demo/dlp_message.svg">
-</p>
+<p align="center"><img src="./assets/dlp_message.svg"></p>
 
 
 ## how to (automatically) generate `.svg` and/or `.png` images from produced `.dot` file

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- seamia/protodot (support file) -->
+<svg width="878pt" height="521pt"
+ viewBox="0.00 0.00 878.00 521.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs><style>svg {background-color: none;color-scheme:light dark;} @media (prefers-color-scheme:dark) {svg {background-color: papayawhip;}}</style></defs>
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 517)">
+<title>protodot</title>
+<g id="a_graph0"><a xlink:title="google.privacy.dlp.v2">
+<text text-anchor="middle" x="435" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">google.privacy.dlp.v2</text>
+</a>
+</g>
+<!-- Nac8d7b3b7cac1a45 -->
+<g id="node1" class="node"><title>Nac8d7b3b7cac1a45</title>
+<g id="a_node1"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="461,-513 327,-513 327,-477 467,-477 467,-507 461,-513"/>
+<polyline fill="none" stroke="black" points="461,-513 461,-507 "/>
+<polyline fill="none" stroke="black" points="467,-507 461,-507 "/>
+<text text-anchor="middle" x="397" y="-498" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="397" y="-487" font-family="Ubuntu" font-size="10.00">google/protobuf/empty.proto</text>
+</a>
+</g>
+</g>
+<!-- N9a2c9549116b5f31 -->
+<g id="node2" class="node"><title>N9a2c9549116b5f31</title>
+<g id="a_node2"><a xlink:title="google.api">
+<polygon fill="cornsilk" stroke="black" points="661.5,-336 527.5,-336 527.5,-300 667.5,-300 667.5,-330 661.5,-336"/>
+<polyline fill="none" stroke="black" points="661.5,-336 661.5,-330 "/>
+<polyline fill="none" stroke="black" points="667.5,-330 661.5,-330 "/>
+<text text-anchor="middle" x="597.5" y="-321" font-family="Ubuntu" font-size="10.00">google.api</text>
+<text text-anchor="middle" x="597.5" y="-310" font-family="Ubuntu" font-size="10.00">google/api/annotations.proto</text>
+</a>
+</g>
+</g>
+<!-- N53410cfb340bdd7c -->
+<g id="node8" class="node"><title>N53410cfb340bdd7c</title>
+<g id="a_node8"><a xlink:title="google.api">
+<polygon fill="cornsilk" stroke="black" points="839,-363 738,-363 738,-327 845,-327 845,-357 839,-363"/>
+<polyline fill="none" stroke="black" points="839,-363 839,-357 "/>
+<polyline fill="none" stroke="black" points="845,-357 839,-357 "/>
+<text text-anchor="middle" x="791.5" y="-348" font-family="Ubuntu" font-size="10.00">google.api</text>
+<text text-anchor="middle" x="791.5" y="-337" font-family="Ubuntu" font-size="10.00">google/api/http.proto</text>
+</a>
+</g>
+</g>
+<!-- N9a2c9549116b5f31&#45;&gt;N53410cfb340bdd7c -->
+<g id="edge2" class="edge"><title>N9a2c9549116b5f31&#45;&gt;N53410cfb340bdd7c</title>
+<path fill="none" stroke="black" d="M667.545,-327.709C687.138,-330.465 708.361,-333.449 727.572,-336.151"/>
+<polygon fill="black" stroke="black" points="727.323,-339.65 737.713,-337.577 728.298,-332.718 727.323,-339.65"/>
+</g>
+<!-- N0518b30284b08321 -->
+<g id="node9" class="node"><title>N0518b30284b08321</title>
+<g id="a_node9"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="864,-309 713,-309 713,-273 870,-273 870,-303 864,-309"/>
+<polyline fill="none" stroke="black" points="864,-309 864,-303 "/>
+<polyline fill="none" stroke="black" points="870,-303 864,-303 "/>
+<text text-anchor="middle" x="791.5" y="-294" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="791.5" y="-283" font-family="Ubuntu" font-size="10.00">google/protobuf/descriptor.proto</text>
+</a>
+</g>
+</g>
+<!-- N9a2c9549116b5f31&#45;&gt;N0518b30284b08321 -->
+<g id="edge3" class="edge"><title>N9a2c9549116b5f31&#45;&gt;N0518b30284b08321</title>
+<path fill="none" stroke="black" d="M667.545,-308.291C679.052,-306.672 691.121,-304.975 703.014,-303.303"/>
+<polygon fill="black" stroke="black" points="703.532,-306.764 712.947,-301.906 702.557,-299.833 703.532,-306.764"/>
+</g>
+<!-- N7841487bad584c71 -->
+<g id="node3" class="node"><title>N7841487bad584c71</title>
+<g id="a_node3"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="465.5,-405 322.5,-405 322.5,-369 471.5,-369 471.5,-399 465.5,-405"/>
+<polyline fill="none" stroke="black" points="465.5,-405 465.5,-399 "/>
+<polyline fill="none" stroke="black" points="471.5,-399 465.5,-399 "/>
+<text text-anchor="middle" x="397" y="-390" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="397" y="-379" font-family="Ubuntu" font-size="10.00">google/protobuf/duration.proto</text>
+</a>
+</g>
+</g>
+<!-- N62b51da58fa4a772 -->
+<g id="node4" class="node"><title>N62b51da58fa4a772</title>
+<g id="a_node4"><a xlink:title="google.rpc">
+<polygon fill="cornsilk" stroke="black" points="449.5,-459 338.5,-459 338.5,-423 455.5,-423 455.5,-453 449.5,-459"/>
+<polyline fill="none" stroke="black" points="449.5,-459 449.5,-453 "/>
+<polyline fill="none" stroke="black" points="455.5,-453 449.5,-453 "/>
+<text text-anchor="middle" x="397" y="-444" font-family="Ubuntu" font-size="10.00">google.rpc</text>
+<text text-anchor="middle" x="397" y="-433" font-family="Ubuntu" font-size="10.00">google/rpc/status.proto</text>
+</a>
+</g>
+</g>
+<!-- N668c2255749e1847 -->
+<g id="node6" class="node"><title>N668c2255749e1847</title>
+<g id="a_node6"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="656,-459 533,-459 533,-423 662,-423 662,-453 656,-459"/>
+<polyline fill="none" stroke="black" points="656,-459 656,-453 "/>
+<polyline fill="none" stroke="black" points="662,-453 656,-453 "/>
+<text text-anchor="middle" x="597.5" y="-444" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="597.5" y="-433" font-family="Ubuntu" font-size="10.00">google/protobuf/any.proto</text>
+</a>
+</g>
+</g>
+<!-- N62b51da58fa4a772&#45;&gt;N668c2255749e1847 -->
+<g id="edge1" class="edge"><title>N62b51da58fa4a772&#45;&gt;N668c2255749e1847</title>
+<path fill="none" stroke="black" d="M455.681,-441C476.626,-441 500.586,-441 522.73,-441"/>
+<polygon fill="black" stroke="black" points="522.759,-444.5 532.759,-441 522.759,-437.5 522.759,-444.5"/>
+</g>
+<!-- N979404f769eaef87 -->
+<g id="node5" class="node"><title>N979404f769eaef87</title>
+<g id="a_node5"><a xlink:title="google.type">
+<polygon fill="cornsilk" stroke="black" points="448.5,-313 339.5,-313 339.5,-277 454.5,-277 454.5,-307 448.5,-313"/>
+<polyline fill="none" stroke="black" points="448.5,-313 448.5,-307 "/>
+<polyline fill="none" stroke="black" points="454.5,-307 448.5,-307 "/>
+<text text-anchor="middle" x="397" y="-298" font-family="Ubuntu" font-size="10.00">google.type</text>
+<text text-anchor="middle" x="397" y="-287" font-family="Ubuntu" font-size="10.00">google/type/date.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1 -->
+<g id="node7" class="node"><title>N5b017070679ed2b1</title>
+<g id="a_node7"><a xlink:title="google.privacy.dlp.v2">
+<polygon fill="cornsilk" stroke="black" points="270,-286 0,-286 0,-250 276,-250 276,-280 270,-286"/>
+<polyline fill="none" stroke="black" points="270,-286 270,-280 "/>
+<polyline fill="none" stroke="black" points="276,-280 270,-280 "/>
+<text text-anchor="middle" x="138" y="-271" font-family="Ubuntu" font-size="10.00">google.privacy.dlp.v2</text>
+<text text-anchor="middle" x="138" y="-260" font-family="Ubuntu" font-size="10.00">C:srcgithubgoogleapisgoogleapisgoogleprivacydlpv2dlp.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;Nac8d7b3b7cac1a45 -->
+<g id="edge9" class="edge"><title>N5b017070679ed2b1&#45;&gt;Nac8d7b3b7cac1a45</title>
+<path fill="none" stroke="black" d="M149.758,-286.129C173.842,-325.171 235.989,-417.729 312,-468 314.396,-469.584 316.891,-471.082 319.458,-472.496"/>
+<polygon fill="black" stroke="black" points="317.918,-475.639 328.427,-476.99 321.055,-469.381 317.918,-475.639"/>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N9a2c9549116b5f31 -->
+<g id="edge6" class="edge"><title>N5b017070679ed2b1&#45;&gt;N9a2c9549116b5f31</title>
+<path fill="none" stroke="black" d="M183.646,-286.043C218.07,-298.94 267.209,-315.172 312,-322 386.693,-333.386 406.456,-323.319 482,-322 493.383,-321.801 505.399,-321.491 517.196,-321.13"/>
+<polygon fill="black" stroke="black" points="517.603,-324.619 527.486,-320.801 517.379,-317.623 517.603,-324.619"/>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N7841487bad584c71 -->
+<g id="edge8" class="edge"><title>N5b017070679ed2b1&#45;&gt;N7841487bad584c71</title>
+<path fill="none" stroke="black" d="M172.327,-286.035C206.812,-304.394 262.468,-333.178 312,-355 319.886,-358.474 328.278,-361.938 336.591,-365.235"/>
+<polygon fill="black" stroke="black" points="335.324,-368.498 345.912,-368.878 337.872,-361.978 335.324,-368.498"/>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N62b51da58fa4a772 -->
+<g id="edge12" class="edge"><title>N5b017070679ed2b1&#45;&gt;N62b51da58fa4a772</title>
+<path fill="none" stroke="black" d="M155.919,-286.339C185.037,-316.896 247.716,-378.381 312,-414 317.236,-416.901 322.831,-419.546 328.553,-421.945"/>
+<polygon fill="black" stroke="black" points="327.674,-425.36 338.262,-425.751 330.23,-418.843 327.674,-425.36"/>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N979404f769eaef87 -->
+<g id="edge13" class="edge"><title>N5b017070679ed2b1&#45;&gt;N979404f769eaef87</title>
+<path fill="none" stroke="black" d="M276.153,-282.409C294.675,-284.355 312.957,-286.276 329.449,-288.008"/>
+<polygon fill="black" stroke="black" points="329.162,-291.497 339.473,-289.061 329.893,-284.536 329.162,-291.497"/>
+</g>
+<!-- N009ad0f53cb1bc28 -->
+<g id="node10" class="node"><title>N009ad0f53cb1bc28</title>
+<g id="a_node10"><a xlink:title="google.privacy.dlp.v2">
+<polygon fill="cornsilk" stroke="black" points="476,-259 312,-259 312,-223 482,-223 482,-253 476,-259"/>
+<polyline fill="none" stroke="black" points="476,-259 476,-253 "/>
+<polyline fill="none" stroke="black" points="482,-253 476,-253 "/>
+<text text-anchor="middle" x="397" y="-244" font-family="Ubuntu" font-size="10.00">google.privacy.dlp.v2</text>
+<text text-anchor="middle" x="397" y="-233" font-family="Ubuntu" font-size="10.00">google/privacy/dlp/v2/storage.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N009ad0f53cb1bc28 -->
+<g id="edge7" class="edge"><title>N5b017070679ed2b1&#45;&gt;N009ad0f53cb1bc28</title>
+<path fill="none" stroke="black" d="M276.153,-253.591C284.826,-252.68 293.447,-251.774 301.856,-250.891"/>
+<polygon fill="black" stroke="black" points="302.418,-254.351 311.997,-249.825 301.686,-247.389 302.418,-254.351"/>
+</g>
+<!-- Nfb36aafb54f54183 -->
+<g id="node11" class="node"><title>Nfb36aafb54f54183</title>
+<g id="a_node11"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="671,-236 518,-236 518,-200 677,-200 677,-230 671,-236"/>
+<polyline fill="none" stroke="black" points="671,-236 671,-230 "/>
+<polyline fill="none" stroke="black" points="677,-230 671,-230 "/>
+<text text-anchor="middle" x="597.5" y="-221" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="597.5" y="-210" font-family="Ubuntu" font-size="10.00">google/protobuf/timestamp.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;Nfb36aafb54f54183 -->
+<g id="edge11" class="edge"><title>N5b017070679ed2b1&#45;&gt;Nfb36aafb54f54183</title>
+<path fill="none" stroke="black" d="M183.646,-249.957C218.07,-237.06 267.209,-220.828 312,-214 386.693,-202.614 406.456,-212.681 482,-214 490.362,-214.146 499.066,-214.352 507.774,-214.594"/>
+<polygon fill="black" stroke="black" points="507.88,-218.099 517.978,-214.894 508.085,-211.102 507.88,-218.099"/>
+</g>
+<!-- N1a7fac19b037fcab -->
+<g id="node12" class="node"><title>N1a7fac19b037fcab</title>
+<g id="a_node12"><a xlink:title="google.protobuf">
+<polygon fill="cornsilk" stroke="black" points="471,-167 317,-167 317,-131 477,-131 477,-161 471,-167"/>
+<polyline fill="none" stroke="black" points="471,-167 471,-161 "/>
+<polyline fill="none" stroke="black" points="477,-161 471,-161 "/>
+<text text-anchor="middle" x="397" y="-152" font-family="Ubuntu" font-size="10.00">google.protobuf</text>
+<text text-anchor="middle" x="397" y="-141" font-family="Ubuntu" font-size="10.00">google/protobuf/field_mask.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N1a7fac19b037fcab -->
+<g id="edge10" class="edge"><title>N5b017070679ed2b1&#45;&gt;N1a7fac19b037fcab</title>
+<path fill="none" stroke="black" d="M172.327,-249.965C206.812,-231.606 262.468,-202.822 312,-181 319.886,-177.526 328.278,-174.062 336.591,-170.765"/>
+<polygon fill="black" stroke="black" points="337.872,-174.022 345.912,-167.122 335.324,-167.502 337.872,-174.022"/>
+</g>
+<!-- N958b255ad07a9d68 -->
+<g id="node13" class="node"><title>N958b255ad07a9d68</title>
+<g id="a_node13"><a xlink:title="google.type">
+<polygon fill="cornsilk" stroke="black" points="462,-113 326,-113 326,-77 468,-77 468,-107 462,-113"/>
+<polyline fill="none" stroke="black" points="462,-113 462,-107 "/>
+<polyline fill="none" stroke="black" points="468,-107 462,-107 "/>
+<text text-anchor="middle" x="397" y="-98" font-family="Ubuntu" font-size="10.00">google.type</text>
+<text text-anchor="middle" x="397" y="-87" font-family="Ubuntu" font-size="10.00">google/type/dayofweek.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;N958b255ad07a9d68 -->
+<g id="edge14" class="edge"><title>N5b017070679ed2b1&#45;&gt;N958b255ad07a9d68</title>
+<path fill="none" stroke="black" d="M155.919,-249.661C185.037,-219.104 247.716,-157.619 312,-122 315.04,-120.316 318.201,-118.718 321.437,-117.204"/>
+<polygon fill="black" stroke="black" points="322.95,-120.363 330.721,-113.161 320.155,-113.945 322.95,-120.363"/>
+</g>
+<!-- Ne45337d27925f2b2 -->
+<g id="node14" class="node"><title>Ne45337d27925f2b2</title>
+<g id="a_node14"><a xlink:title="google.type">
+<polygon fill="cornsilk" stroke="black" points="460,-59 328,-59 328,-23 466,-23 466,-53 460,-59"/>
+<polyline fill="none" stroke="black" points="460,-59 460,-53 "/>
+<polyline fill="none" stroke="black" points="466,-53 460,-53 "/>
+<text text-anchor="middle" x="397" y="-44" font-family="Ubuntu" font-size="10.00">google.type</text>
+<text text-anchor="middle" x="397" y="-33" font-family="Ubuntu" font-size="10.00">google/type/timeofday.proto</text>
+</a>
+</g>
+</g>
+<!-- N5b017070679ed2b1&#45;&gt;Ne45337d27925f2b2 -->
+<g id="edge15" class="edge"><title>N5b017070679ed2b1&#45;&gt;Ne45337d27925f2b2</title>
+<path fill="none" stroke="black" d="M149.758,-249.871C173.842,-210.829 235.989,-118.271 312,-68 314.396,-66.4156 316.891,-64.9185 319.458,-63.5043"/>
+<polygon fill="black" stroke="black" points="321.055,-66.6193 328.427,-59.0096 317.918,-60.3613 321.055,-66.6193"/>
+</g>
+<!-- N009ad0f53cb1bc28&#45;&gt;N9a2c9549116b5f31 -->
+<g id="edge4" class="edge"><title>N009ad0f53cb1bc28&#45;&gt;N9a2c9549116b5f31</title>
+<path fill="none" stroke="black" d="M457.007,-259.136C465.443,-261.969 473.976,-264.967 482,-268 504.07,-276.342 528.057,-286.621 548.347,-295.686"/>
+<polygon fill="black" stroke="black" points="547.131,-298.977 557.686,-299.889 550.004,-292.594 547.131,-298.977"/>
+</g>
+<!-- N009ad0f53cb1bc28&#45;&gt;Nfb36aafb54f54183 -->
+<g id="edge5" class="edge"><title>N009ad0f53cb1bc28&#45;&gt;Nfb36aafb54f54183</title>
+<path fill="none" stroke="black" d="M482.182,-231.246C490.688,-230.26 499.345,-229.257 507.896,-228.266"/>
+<polygon fill="black" stroke="black" points="508.339,-231.739 517.869,-227.111 507.533,-224.785 508.339,-231.739"/>
+</g>
+</g>
+</svg>
