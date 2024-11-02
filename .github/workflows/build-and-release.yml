@@ -1,0 +1,65 @@
+name: Build and release
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Specify a test matrix of specific OS/arch pairs using GitHub's special expansion matching syntax described in
+        # [1]
+        #
+        # [1] https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow#expanding-or-adding-matrix-configurations
+        go-os-target: ["windows", "darwin", "linux"]
+        go-arch-target: ["amd64", "arm64"]
+        include:
+          # Add the JS/wasm target (standalone since it can't pair with the matrix above
+          - go-os-target: "js"
+            go-arch-target: "wasm"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Build all protodot other than Windows
+        run: go build -o "build/protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}"
+        if: matrix.go-os-target != 'windows'
+        env:
+          GOOS: ${{ matrix.go-os-target }}
+          GOARCH: ${{ matrix.go-arch-target }}
+
+      - name: Build protodot for Windows with exe extension
+        run: go build -o "build/protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}.exe"
+        if: matrix.go-os-target == 'windows'
+        env:
+          GOOS: ${{ matrix.go-os-target }}
+          GOARCH: ${{ matrix.go-arch-target }}
+
+
+      - name: Upload built assets (on tag push)
+        uses: softprops/action-gh-release@v2
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        with:
+          files: build/*
+
+      # Upload GitHub Action workflow *artifacts*. Note "artifacts" are a different concept to GitHub release assets.
+      # The former is available on each GitHub Actions workflow run. The latter is associated with only a pushed tag.
+
+      - name: Upload release artifacts except Windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: "protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}"
+          path: "build/protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}"
+
+      # Ensure Windows assets have exe extension
+      - name: Upload remaining Windows release artifacts (with 'exe' extension)
+        uses: actions/upload-artifact@v3
+        if: matrix.go-os-target == 'windows'
+        with:
+          name: "protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}.exe"
+          path: "build/protodot-${{ matrix.go-os-target }}-${{ matrix.go-arch-target }}.exe"
