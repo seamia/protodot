@@ -11,6 +11,26 @@ import (
 	"github.com/seamia/tools/support"
 )
 
+func graphvizStderr(err error) string {
+	if ee, ok := err.(*exec.ExitError); ok && len(ee.Stderr) > 0 {
+		return string(ee.Stderr)
+	}
+	return ""
+}
+
+// closeDotAndRunGraphviz closes the .dot file handle, then runs graphviz if the file exists.
+// Closing before invoking dot is required on Windows so the file is not locked.
+func closeDotAndRunGraphviz(pbs *pbstate) {
+	if pbs == nil || pbs.outputFile == "" {
+		return
+	}
+	pbs.closeOutputWriters()
+	if _, err := os.Stat(pbs.outputFile); err != nil {
+		return
+	}
+	graphviz(pbs.outputFile, options(generateSvg), options(generatePng))
+}
+
 // (optionally) running 'graphviz' on the given .dot file
 func graphviz(src string, svg, png bool) {
 
@@ -29,26 +49,30 @@ func graphviz(src string, svg, png bool) {
 		if graphviz, err := support.GetLocation(g_config, "graphviz"); err == nil && len(graphviz) > 0 {
 			if svg {
 				status("generating .svg file")
-				if output, e := exec.Command(graphviz, "-Tsvg", src).Output(); e == nil {
+				cmd := exec.Command(graphviz, "-Tsvg", src)
+				// Use Output (stdout only). CombinedOutput would prepend Pango/font warnings
+				// from stderr and produce invalid XML in the .svg file.
+				if output, e := cmd.Output(); e == nil {
 					if err := os.WriteFile(svgPath, output, 0755); err != nil {
 						status("error on write", err)
 						svgPath = ""
 					}
 				} else {
-					status("error on exec", e)
+					status("error on exec", e, graphvizStderr(e))
 					svgPath = ""
 				}
 			}
 
 			if png {
 				status("generating .png file")
-				if output, e := exec.Command(graphviz, "-Tpng", src).Output(); e == nil {
+				cmd := exec.Command(graphviz, "-Tpng", src)
+				if output, e := cmd.Output(); e == nil {
 					if err := os.WriteFile(pngPath, output, 0755); err != nil {
 						status("error on write", err)
 						pngPath = ""
 					}
 				} else {
-					status("error on exec", e)
+					status("error on exec", e, graphvizStderr(e))
 					pngPath = ""
 				}
 			}

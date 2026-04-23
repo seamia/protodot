@@ -37,6 +37,20 @@ func (cow *CreateOnWrite) Write(p []byte) (n int, err error) {
 	return cow.writer.Write(p)
 }
 
+// Close releases the open .dot file handle. Required on Windows before another process
+// (e.g. graphviz) can read the file; otherwise opening the same path may fail with "Permission denied".
+func (cow *CreateOnWrite) Close() error {
+	if cow == nil || cow.writer == nil {
+		return nil
+	}
+	var err error
+	if c, ok := cow.writer.(io.Closer); ok {
+		err = c.Close()
+	}
+	cow.writer = nil
+	return err
+}
+
 // ----------------------------------------------------------------------------------------------------------------------
 type ForkWriter struct {
 	writers []io.Writer
@@ -61,6 +75,22 @@ func (fw *ForkWriter) Write(p []byte) (n int, err error) {
 		n, err = writer.Write(p) // ignoring (aka overwriting) 'intermediate' return values here
 	}
 	return
+}
+
+// Close closes all underlying writers that implement io.Closer (e.g. CreateOnWrite).
+func (fw *ForkWriter) Close() error {
+	if fw == nil {
+		return nil
+	}
+	var first error
+	for _, w := range fw.writers {
+		if c, ok := w.(io.Closer); ok {
+			if err := c.Close(); err != nil && first == nil {
+				first = err
+			}
+		}
+	}
+	return first
 }
 
 func createDirIfMissing(name string) {

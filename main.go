@@ -144,6 +144,13 @@ func (pbs *pbstate) AddWriter(target io.Writer) {
 	pbs.writer.AddWriter(target)
 }
 
+func (pbs *pbstate) closeOutputWriters() {
+	if pbs == nil || pbs.writer == nil {
+		return
+	}
+	_ = pbs.writer.Close()
+}
+
 func (pbs *pbstate) target() io.Writer {
 	if pbs.writer != nil {
 		return pbs.writer
@@ -203,6 +210,9 @@ func (pbs *pbstate) getResolution(scope FullName, shorttype OriginalName) *tinfo
 }
 
 func (pbs *pbstate) recordInclusion(from UniqueName, field string, to UniqueName) {
+	if pbs.isUniqueNameMissingTypePlaceholder(to) && !pbs.showMissingTypeGraphElements() {
+		return
+	}
 
 	fullFrom := from
 	if len(field) > 0 {
@@ -213,6 +223,20 @@ func (pbs *pbstate) recordInclusion(from UniqueName, field string, to UniqueName
 		pbs.inclusions[fullFrom] = make(map[UniqueName]int)
 	}
 	pbs.inclusions[fullFrom][to]++
+}
+
+// showMissingTypeGraphElements is true when placeholder nodes for unresolved types and edges to them are drawn.
+func (pbs *pbstate) showMissingTypeGraphElements() bool {
+	return options("show missing types")
+}
+
+func (pbs *pbstate) isUniqueNameMissingTypePlaceholder(to UniqueName) bool {
+	full, ok := pbs.knownNames[to]
+	if !ok {
+		return false
+	}
+	info, ok := pbs.types237[full]
+	return ok && info.typename == typenameMissing
 }
 
 func renderMissingNode(name OriginalName, unique UniqueName, fullname FullName) string {
@@ -250,16 +274,27 @@ func (pbs *pbstate) recordMissingType(from UniqueName, missingType OriginalName)
 	}
 }
 
-func (pbs *pbstate) recordMissingInclusion(from UniqueName, field string, missingType OriginalName) {
+func (pbs *pbstate) recordMissingInclusion(source FullName, from UniqueName, field string, missingType OriginalName) {
 	debug("****** Field [", field, "] from [", from, "] refers to non-existing type [", missingType, "] ******")
 
-	if options("show missing types") {
-		// 1. save type (if not already)
-		unique := pbs.recordMissingType(from, missingType)
+	if !optionBoolDefault("allow unresolved types", true) {
+		msg := fmt.Sprintf("unresolved type %q; source: %s (set options[\"allow unresolved types\"] to true to continue, or correct includes/imports)", missingType, source)
+		alert(msg)
+		panic(msg)
+	}
 
-		// 2. record the connection
+	// When allowed, register a placeholder so field resolution and getKind succeed; "show missing types" controls graph only.
+	unique := pbs.recordMissingType(from, missingType)
+	if pbs.showMissingTypeGraphElements() {
 		pbs.recordInclusion(from, field, unique)
 	}
+}
+
+func (pbs *pbstate) includeProtoNodeInGraphOutput(info tinfo) bool {
+	if info.typename != typenameMissing {
+		return true
+	}
+	return pbs.showMissingTypeGraphElements()
 }
 
 func (pbs *pbstate) getInclusion(from UniqueName, field string) (UniqueName, map[UniqueName]int) {
@@ -488,20 +523,26 @@ func (pbs *pbstate) showInclusion(groupByPackages bool, leaveRootPackageUnwrappe
 
 				pbs.applyTemplate("comment", "leaving the root package unwrapped")
 				for _, info := range members {
-					pbs.applyTemplate("entry", info.raw)
+					if pbs.includeProtoNodeInGraphOutput(info) {
+						pbs.applyTemplate("entry", info.raw)
+					}
 				}
 			} else {
 
 				pbs.applyTemplate("cluster.prefix", data)
 				for _, info := range members {
-					pbs.applyTemplate("cluster.entry", info.raw)
+					if pbs.includeProtoNodeInGraphOutput(info) {
+						pbs.applyTemplate("cluster.entry", info.raw)
+					}
 				}
 				pbs.applyTemplate("cluster.suffix", data)
 			}
 		}
 	} else {
 		for _, info := range pbs.types237 {
-			pbs.applyTemplate("entry", info.raw)
+			if pbs.includeProtoNodeInGraphOutput(info) {
+				pbs.applyTemplate("entry", info.raw)
+			}
 		}
 	}
 
@@ -892,7 +933,7 @@ func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 					pbs.encounteredType(info.unique, actual.Name, inf.unique)
 				} else {
 					alert("failed to resolve", actual.Type)
-					pbs.recordMissingInclusion(info.unique, actual.Name, OriginalName(actual.Type))
+					pbs.recordMissingInclusion(full, info.unique, actual.Name, OriginalName(actual.Type))
 				}
 			}
 
@@ -921,7 +962,7 @@ func (pbs *pbstate) handleMessageBody(msg *proto.Message) {
 					pbs.recordInclusion(info.unique, actual.Name, inf.unique)
 				} else {
 					alert("failed to resolve type [", actual.Type, "] from ", full)
-					pbs.recordMissingInclusion(info.unique, actual.Name, OriginalName(actual.Type))
+					pbs.recordMissingInclusion(full, info.unique, actual.Name, OriginalName(actual.Type))
 				}
 			}
 
@@ -957,7 +998,7 @@ func (pbs *pbstate) onOneof(fullname FullName, unique UniqueName, one *proto.One
 						pbs.encounteredType(unique, actual.Name, inf.unique)
 					} else {
 						alert("failed to get unique name for type", actual.Type)
-						pbs.recordMissingInclusion(unique, actual.Name, OriginalName(actual.Type))
+						pbs.recordMissingInclusion(fullname, unique, actual.Name, OriginalName(actual.Type))
 					}
 				}
 
@@ -1095,7 +1136,7 @@ func (pbs *pbstate) handleServiceBody(srv *proto.Service) {
 					pbs.recordInclusion(info.unique, field, inf.unique)
 				} else {
 					alert("failed to resolve type [", actual.RequestType, "] from ", full)
-					pbs.recordMissingInclusion(info.unique, field, OriginalName(actual.RequestType))
+					pbs.recordMissingInclusion(full, info.unique, field, OriginalName(actual.RequestType))
 				}
 			}
 
@@ -1106,7 +1147,7 @@ func (pbs *pbstate) handleServiceBody(srv *proto.Service) {
 					pbs.recordInclusion(info.unique, field, inf.unique)
 				} else {
 					alert("failed to resolve type [", actual.ReturnsType, "] from ", full)
-					pbs.recordMissingInclusion(info.unique, field, OriginalName(actual.ReturnsType))
+					pbs.recordMissingInclusion(full, info.unique, field, OriginalName(actual.ReturnsType))
 				}
 			}
 
@@ -1344,7 +1385,7 @@ func processOneProto(name, selection string) {
 
 	pbs := NewPbs()
 	process(pbs, name, selection)
-	graphviz(pbs.outputFile, options(generateSvg), options(generatePng))
+	closeDotAndRunGraphviz(pbs)
 }
 
 func applyToAllFiles(root, selection string) {
@@ -1492,6 +1533,6 @@ func main() {
 	} else {
 		pbs := NewPbs()
 		process(pbs, *g_source, *g_selection)
-		graphviz(pbs.outputFile, options(generateSvg), options(generatePng))
+		closeDotAndRunGraphviz(pbs)
 	}
 }

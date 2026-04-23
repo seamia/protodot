@@ -21,3 +21,21 @@ func options(name string) bool {
 	trace("Option [" + name + "] was not found - returning the default: false")
 	return false
 }
+
+// optionBoolDefault returns a boolean from options, or ifMissing if the key is not set.
+func optionBoolDefault(name string, ifMissing bool) bool {
+	if g_config != nil && len(name) > 0 {
+		if copts, found := g_config["options"]; found {
+			opts, found := copts.(map[string]interface{})
+			if found && len(opts) > 0 {
+				if value, found := opts[name]; found {
+					if b, ok := value.(bool); ok {
+						return b
+					}
+				}
+			}
+		}
+	}
+	trace("Option [" + name + "] was not found - returning the default: ", ifMissing)
+	return ifMissing
+}

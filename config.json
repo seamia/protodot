@@ -4,7 +4,7 @@
 		"orientation":		"LR",
 		"node.shape":		"plaintext",
 		"node.font.size":	"10",
-		"node.font.name":	"Ubuntu",
+		"node.font.name":	"Arial",
 		
 		"text.align.header":	"right",
 		"text.align.sequence":	"right",
@@ -98,6 +98,7 @@
 	},
 	"options" : {
 		"allow missing imports":	true,
+		"allow unresolved types":	true,
 		"show missing types":		true,
 		"generate .png file":		false,
 		"generate .svg file":		true,
